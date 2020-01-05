@@ -1,0 +1,109 @@
+.full-screen-modal {
+  background-color: white;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 100%;
+  transition: all 0.3s;
+  z-index: 4000;
+
+  &.shown {
+    top: 0;
+  }
+}
+
+.full-screen-header {
+  border-bottom: 1px solid gray;
+  flex-shrink: 0;
+  height: 48px;
+  padding: 10px;
+}
+
+.full-screen-content {
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 0 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.dropdown-modal {
+  bottom: 0;
+  position: absolute;
+  transition: background-color 0.3s;
+  width: 100%;
+
+  &.shown {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.shadow-modal {
+  bottom: 0;
+  position: absolute;
+  top: 0;
+  transition: background-color 0.3s;
+  width: 100%;
+  z-index: 5000;
+
+  &.shown {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.confirm-modal {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #666;
+
+  display: flex;
+  flex-direction: column;
+  left: 40px;
+  opacity: 0;
+  padding: 16px;
+  position: absolute;
+  right: 40px;
+  top: 220px;
+  transition: all 0.3s;
+  z-index: 4000;
+
+  &.shown {
+    opacity: 1;
+    top: 160px;
+  }
+}
+
+.confirm-btn {
+  border-top: 1px solid gray;
+  margin-top: 16px;
+  padding-top: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+.tips-modal {
+  background-color: white;
+  bottom: 0;
+  max-height: 70%;
+  overflow-y: scroll;
+  padding: 16px;
+  position: absolute;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+  width: 100%;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &.shown {
+    transform: translateY(0);
+  }
+}
