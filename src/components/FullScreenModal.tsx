@@ -6,6 +6,8 @@ import {
   usePopupLayerOverlay,
 } from 'react-dom-basic-kit'
 import { transformStyles } from 'react-dom-basic-kit'
+import { PageLoading } from '../containers/PageLoading'
+import { Loading } from './Loading'
 
 const cx = transformStyles(styles)
 
@@ -22,7 +24,9 @@ const TFullScreenModal: React.FC<any> = (props: any) => {
       <div className={cx('full-screen-header')} onClick={() => onClose()}>
         X
       </div>
-      <div className={cx('full-screen-content')}>{props.children}</div>
+      <div className={cx('full-screen-content')}>
+        <React.Suspense fallback={<Loading />}>{props.children}</React.Suspense>
+      </div>
     </div>
   )
 }

@@ -19,7 +19,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: __dirname + '/build',
-    libraryTarget: 'umd',
+    libraryTarget: 'commonjs',
   },
 
   // Enable sourcemaps for debugging webpack's output.
@@ -37,10 +37,10 @@ module.exports = {
         use: [
           '@svgr/webpack',
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              // limit: false,
-              name: '[name].[hash:8].[ext]',
+              esModule: false,
+              // name: '[name].[hash:8].[ext]',
             },
           },
         ],

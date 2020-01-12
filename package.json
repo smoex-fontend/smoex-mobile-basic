@@ -1,6 +1,6 @@
 {
   "name": "smoex-mobile-basic",
-  "version": "0.0.9",
+  "version": "0.0.16",
   "description": "A simplify work flow for redux",
   "main": "build/index.js",
   "scripts": {
@@ -30,11 +30,11 @@
     "@types/react-redux": "^7.1.5",
     "react": "^16.11.0",
     "react-dom": "^16.12.0",
-    "react-dom-basic-kit": "^0.0.20",
+    "react-dom-basic-kit": "^0.0.25",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "redux-async-kit": "^0.0.9",
-    "smoex-common-business": "^0.0.2"
+    "smoex-common-business": "^0.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

@@ -19,6 +19,10 @@
     "lib": ["es2018", "dom"],
     "importHelpers": true
   },
+  "awesomeTypescriptLoaderOptions": {
+    "target": "es6",
+    "jsx": "react"
+  },
   "exclude": ["node_modules", "build"],
   "include": ["src"]
 }

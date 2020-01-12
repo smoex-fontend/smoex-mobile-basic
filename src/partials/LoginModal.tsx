@@ -4,9 +4,16 @@ import styles from './styles/LoginModal.module.scss'
 import { asModalProps, useModal, useToggleToast } from 'react-dom-basic-kit'
 import { useFormState } from 'react-dom-basic-kit'
 import { transformStyles } from 'react-dom-basic-kit'
-import { LoginForm } from './LoginForm'
-import { RegisterForm } from './RegisterForm'
+// import { LoginForm } from './LoginForm'
+// import { RegisterForm } from './RegisterForm'
 import { ConfirmModal } from '../components/ConfirmModal'
+
+const LoginForm = React.lazy(() =>
+  import('./LoginForm' /* webpackChunkName: "login" */),
+)
+const RegisterForm = React.lazy(() =>
+  import('./RegisterForm' /* webpackChunkName: "register" */),
+)
 
 const cx = transformStyles(styles)
 

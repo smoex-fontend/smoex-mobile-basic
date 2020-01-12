@@ -92,3 +92,5 @@ const TLoginForm: React.FC<any> = (props) => {
 }
 
 export const LoginForm = enhanceFormComponent(TLoginForm)
+
+export default LoginForm

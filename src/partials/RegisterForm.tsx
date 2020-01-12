@@ -92,3 +92,4 @@ const TRegisterForm: React.FC<any> = (props) => {
 }
 
 export const RegisterForm = enhanceFormComponent(TRegisterForm)
+export default RegisterForm
