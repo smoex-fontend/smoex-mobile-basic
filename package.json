@@ -5,6 +5,7 @@
   "main": "build/index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
+    "build:storybook": "build-storybook",
     "build": "NODE_ENV=production webpack",
     "build:prod": "npm run build && npm publish",
     "format": "npm run format:tslint && npm run format:prettier",

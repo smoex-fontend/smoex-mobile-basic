@@ -1,4 +1,4 @@
-import './styles.scss'
+import './index.scss'
 
 export * from './containers/Header'
 export * from './containers/Footer'

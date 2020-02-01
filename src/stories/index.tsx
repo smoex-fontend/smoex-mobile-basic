@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import '../styles.scss'
+import '../index.scss'
 import { BlankPage } from './BlankPage'
 // import { BlankPageBuild } from './BlankPageBuild'
 

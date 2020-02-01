@@ -34,16 +34,7 @@ module.exports = {
     rules: [
       {
         test: /\.svg$/,
-        use: [
-          '@svgr/webpack',
-          {
-            loader: 'file-loader',
-            options: {
-              esModule: false,
-              // name: '[name].[hash:8].[ext]',
-            },
-          },
-        ],
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.tsx?$/,
