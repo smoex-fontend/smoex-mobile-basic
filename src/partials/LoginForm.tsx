@@ -1,11 +1,7 @@
 import * as React from 'react'
 import { FullScreenModal } from '../components/FullScreenModal'
 import styles from './styles/LoginModal.module.scss'
-import {
-  asModalProps,
-  useToggleToast,
-  useToastError,
-} from 'react-dom-basic-kit'
+import { useToastError } from 'react-dom-basic-kit'
 import { useFormState } from 'react-dom-basic-kit'
 import { transformStyles } from 'react-dom-basic-kit'
 import { enhanceFormComponent } from 'react-dom-basic-kit'

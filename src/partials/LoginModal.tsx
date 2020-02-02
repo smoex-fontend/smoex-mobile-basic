@@ -59,7 +59,10 @@ export const LoginModal: React.FC<any> = (props) => {
   const [showConfirm] = useModal((mProps: any) => (
     <ConfirmModal {...mProps}>{`test`}</ConfirmModal>
   ))
-  const toggleToast = useToggleToast('test')
+  const toggleToast = useToggleToast()
+  const toggleMessage = () => {
+    toggleToast('test')
+  }
   return (
     <FullScreenModal {...asModalProps(props)} onClose={onCloseModal}>
       <div className={cx('login-modal')}>
@@ -79,7 +82,7 @@ export const LoginModal: React.FC<any> = (props) => {
         <br />
         <div onClick={showConfirm}>TEST CONFIRM</div>
         <br />
-        <div onClick={toggleToast}>TEST TOAST</div>
+        <div onClick={toggleMessage}>TEST TOAST</div>
       </div>
     </FullScreenModal>
   )

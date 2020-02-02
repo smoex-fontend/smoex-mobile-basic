@@ -19,7 +19,11 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: __dirname + '/build',
-    libraryTarget: 'commonjs',
+    jsonpFunction: `webpackJsonpsmoex-common-mobile`,
+    chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
+    globalObject: 'this',
+    libraryTarget: 'umd',
+    publicPath: 'https://public.smoex.com/common-mobile/',
   },
 
   // Enable sourcemaps for debugging webpack's output.
@@ -34,7 +38,16 @@ module.exports = {
     rules: [
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: [
+          '@svgr/webpack',
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: true,
+              name: 'static/media/[name].[hash:8].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -132,4 +145,10 @@ module.exports = {
     //   // The formatter is invoked directly in WebpackDevServerUtils during development
     // }),
   ],
+  optimization: {
+    // splitChunks: {
+    //   chunks: 'all',
+    //   name: false,
+    // },
+  },
 }
