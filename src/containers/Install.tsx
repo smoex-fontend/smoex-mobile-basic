@@ -2,7 +2,7 @@ import * as React from 'react'
 import styles from './styles/App.module.scss'
 import { transformStyles } from 'react-dom-basic-kit'
 import { updateOffsetTop } from '../components/DrawerModal'
-import { useDefaultPageProps } from './PageRouter'
+import { useDefaultPageProps } from './PageRouterContext'
 const cx = transformStyles(styles)
 
 export const Install: React.FC<any> = (props) => {
@@ -20,3 +20,4 @@ export const Install: React.FC<any> = (props) => {
     </div>
   )
 }
+export default Install

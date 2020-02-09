@@ -47,3 +47,4 @@ const TDrawerModal: React.FC<IDrawerModalProps> = (props) => {
 }
 
 export const DrawerModal = enhancePopupComponent(TDrawerModal)
+export default DrawerModal

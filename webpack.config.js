@@ -10,6 +10,7 @@ var { CheckerPlugin } = require('awesome-typescript-loader')
 var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin')
 const resolve = require('resolve')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'production',
@@ -59,9 +60,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
             loader: 'css-loader',
             options: {
               modules: {
@@ -70,11 +71,12 @@ module.exports = {
               importLoaders: 1,
             },
           },
-        }),
+        ],
       },
       {
         test: /\.module.scss$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -91,12 +93,13 @@ module.exports = {
               sourceMap: true,
             },
           },
-        ]),
+        ],
       },
       {
         test: /\.scss$/,
         exclude: /\.module\.scss$/,
-        use: ExtractTextPlugin.extract([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -110,7 +113,7 @@ module.exports = {
               sourceMap: true,
             },
           },
-        ]),
+        ],
       },
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
@@ -124,9 +127,15 @@ module.exports = {
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: [nodeExternals()],
   plugins: [
-    new ExtractTextPlugin('./[name].css'),
+    // new ExtractTextPlugin('./[name].css'),
     new CleanWebpackPlugin(),
     new CheckerPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+    }),
     //  new ForkTsCheckerWebpackPlugin({
     //   typescript: resolve.sync('typescript', {
     //     basedir: './node_modules',
@@ -146,9 +155,9 @@ module.exports = {
     // }),
   ],
   optimization: {
-    // splitChunks: {
-    //   chunks: 'all',
-    //   name: false,
-    // },
+    splitChunks: {
+      chunks: 'all',
+      name: false,
+    },
   },
 }

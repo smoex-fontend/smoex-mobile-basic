@@ -14,8 +14,9 @@ const cx = transformStyles(styles)
 
 const AccountIntro = (props: any) => {
   const { showLogin, onCloseModal } = props
-  const account =
-    commonSlice.useSelector((state: any) => state.account.payload) || {}
+  const [account = {}] = commonSlice.useSelector(
+    (state: any) => state.account.payload,
+  )
   const [logout] = commonSlice.useAction(accountAsyncAction.logout)
   const onAvatarClick = React.useCallback(() => {
     if (account.group === 'visitor') {

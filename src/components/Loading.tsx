@@ -8,3 +8,4 @@ const cx = transformStyles(styles)
 export const Loading: React.FC = () => {
   return <img className={cx('loading')} src={LoadingSVG} />
 }
+export default Loading

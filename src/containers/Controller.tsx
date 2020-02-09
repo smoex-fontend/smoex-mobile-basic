@@ -29,3 +29,5 @@ export const Controller = () => {
     </div>
   )
 }
+
+export default Controller

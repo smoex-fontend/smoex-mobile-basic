@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { usePageProps } from './PageRouter'
+import { usePageProps } from './PageRouterContext'
 import { Loading } from '../components/Loading'
 
 export const PageLoading = () => {
@@ -9,3 +9,4 @@ export const PageLoading = () => {
     </section>
   )
 }
+export default PageLoading

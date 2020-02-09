@@ -10,6 +10,7 @@ node_modules
 
 # production
 /build
+config.yml
 
 # misc
 .DS_Store

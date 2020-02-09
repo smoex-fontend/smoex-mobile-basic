@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Switch, Route, useLocation } from 'react-router-dom'
 import { Header } from './Header'
-import { useActionCallback } from 'redux-async-kit'
+import { useAsyncCallback } from 'redux-async-kit'
 import { accountAsyncAction, commonSlice } from 'smoex-common-business'
 import { Footer } from './Footer'
 import { PageError } from './PageError'
@@ -12,29 +12,22 @@ import { IS_QQ_WEBVIEW } from '../utils/device'
 import { Controller } from './Controller'
 import { IS_WECHAT_WEBVIEW } from '../utils/device'
 import { useToastError } from 'react-dom-basic-kit'
-
-export const PageContext = React.createContext<any>(null)
-
-const DEFALUT_PAGE_PROPS: any = {
-  showHeader: true,
-  showFooter: true,
-  showInstall: true,
-}
+import { DEFALUT_PAGE_PROPS, PageContext } from './PageRouterContext'
 
 function useInitLoading() {
-  const [getInfo] = commonSlice.useAction(accountAsyncAction.getInfo)
+  const [getInfo, infoState] = commonSlice.useAction(accountAsyncAction.getInfo)
   const [loading, setLoading] = React.useState(true)
-  const [onGetInfo, error] = useActionCallback(async () => {
+  const onGetInfo = useAsyncCallback(async () => {
     await getInfo()
     setLoading(false)
   }) as any
   React.useEffect(() => {
-    if (error) {
+    if (infoState.error) {
       setLoading(false)
     }
-  }, [error])
+  }, [infoState.error])
 
-  useToastError(error)
+  useToastError(infoState.error)
 
   React.useEffect(() => {
     onGetInfo()
@@ -57,27 +50,6 @@ function initRootHeight() {
     setTimeout(() => {
       initInnerHeight(rootNode)
     }, 100)
-  }
-}
-
-export function usePageProps(props: any = {}, deps: any[] = []) {
-  const { setPageProps, pageProps } = React.useContext(PageContext)
-  React.useEffect(() => {
-    setPageProps(props)
-    return () => {
-      setPageProps(DEFALUT_PAGE_PROPS)
-    }
-  }, deps)
-  return pageProps
-}
-
-export function useDefaultPageProps() {
-  const { setPageProps } = React.useContext(PageContext)
-  return (pageProps: any) => {
-    setPageProps(pageProps)
-    Object.keys(pageProps).forEach((key) => {
-      DEFALUT_PAGE_PROPS[key] = pageProps[key]
-    })
   }
 }
 
@@ -117,3 +89,4 @@ export const PageRouter: React.FC<any> = (props) => {
     </PageContext.Provider>
   )
 }
+export default PageRouter

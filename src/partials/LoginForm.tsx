@@ -5,7 +5,7 @@ import { useToastError } from 'react-dom-basic-kit'
 import { useFormState } from 'react-dom-basic-kit'
 import { transformStyles } from 'react-dom-basic-kit'
 import { enhanceFormComponent } from 'react-dom-basic-kit'
-import { useActionCallback } from 'redux-async-kit'
+import { useAsyncCallback } from 'redux-async-kit'
 import { accountAsyncAction, commonSlice } from 'smoex-common-business'
 import { LoginFormInput } from '././LoginModal'
 
@@ -16,16 +16,16 @@ const TLoginForm: React.FC<any> = (props) => {
   const [data, setData] = useFormState()
   const [loginType, setLoginType] = React.useState('password')
 
-  const [login, LoginLoading] = commonSlice.useAction(accountAsyncAction.login)
-  const [sendCode, sendLoading] = commonSlice.useAction(
+  const [login, loginState] = commonSlice.useAction(accountAsyncAction.login)
+  const [sendCode, sendState] = commonSlice.useAction(
     accountAsyncAction.sendCode,
   )
-  const [verify, verifyLoading] = commonSlice.useAction(
+  const [verify, verifyState] = commonSlice.useAction(
     accountAsyncAction.verifyCode,
   )
-  const loading = LoginLoading || sendLoading
+  const loading = loginState.loading || sendState.loading
 
-  const [onLogin, loginError] = useActionCallback(async () => {
+  const onLogin = useAsyncCallback(async () => {
     const { account, password, code } = data
     if (loginType === 'password') {
       await login(account, password)
@@ -37,13 +37,13 @@ const TLoginForm: React.FC<any> = (props) => {
     }
   }, [login, data, loginType, verify]) as any
 
-  const [onSendCode, sendCodeError] = useActionCallback(async () => {
+  const onSendCode = useAsyncCallback(async () => {
     const { account } = data
     await sendCode(account, 'login')
   }, [sendCode, data]) as any
 
-  useToastError(loginError)
-  useToastError(sendCodeError)
+  useToastError(loginState.error)
+  useToastError(sendState.error)
 
   React.useEffect(() => {
     setData({ password: '', code: '' })
@@ -78,7 +78,7 @@ const TLoginForm: React.FC<any> = (props) => {
         LOGIN BY {loginType !== 'password' ? 'PASSWORD' : 'VERIFY CODE'}
       </div>
       <div className={cx('login-form-btn', { loading })} onClick={onLogin}>
-        LOGIN{(LoginLoading || verifyLoading) && '...'}
+        LOGIN{(loginState.loading || verifyState.loading) && '...'}
       </div>
       <div className={cx('login-form-btn')} onClick={toRegister}>
         REGISTER

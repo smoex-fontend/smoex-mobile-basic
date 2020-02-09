@@ -19,3 +19,4 @@ export const TipsModal: React.FC<any> = (props) => {
     </Modal>
   )
 }
+export default TipsModal

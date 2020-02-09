@@ -10,7 +10,7 @@ import {
 import { useFormState } from 'react-dom-basic-kit'
 import { transformStyles } from 'react-dom-basic-kit'
 import { enhanceFormComponent } from 'react-dom-basic-kit'
-import { useActionCallback, useCurrentCallback } from 'redux-async-kit'
+import { useAsyncCallback, useCurrentCallback } from 'redux-async-kit'
 import { accountAsyncAction, commonSlice } from 'smoex-common-business'
 import { LoginFormInput } from './LoginModal'
 import { ConfirmModal } from '../components/ConfirmModal'
@@ -30,13 +30,15 @@ const TRegisterForm: React.FC<any> = (props) => {
     </ConfirmModal>
   ))
 
-  const [sendCode, sendLoading] = commonSlice.useAction(
+  const [sendCode, sendState] = commonSlice.useAction(
     accountAsyncAction.sendCode,
   )
-  const [verify, verifyLoading] = commonSlice.useAction(
+  const [verify, verifyState] = commonSlice.useAction(
     accountAsyncAction.verifyCode,
   )
-  const account = commonSlice.useSelector((state: any) => state.account.payload)
+  const [account] = commonSlice.useSelector(
+    (state: any) => state.account.payload,
+  )
 
   const onRegistered = useCurrentCallback(() => {
     if (account.group === 'member') {
@@ -47,19 +49,19 @@ const TRegisterForm: React.FC<any> = (props) => {
     }
   }, [account])
 
-  const [onRegister, registerError] = useActionCallback(async () => {
+  const onRegister = useAsyncCallback(async () => {
     const { code } = data
     await verify(code, 'register')
     onRegistered.current()
   }, [data, verify, account]) as any
 
-  const [onSendCode, sendCodeError] = useActionCallback(async () => {
+  const onSendCode = useAsyncCallback(async () => {
     const { account } = data
     await sendCode(account, 'register')
   }, [sendCode, data]) as any
 
-  useToastError(registerError)
-  useToastError(sendCodeError)
+  useToastError(verifyState.error)
+  useToastError(sendState.error)
   return (
     <form className={cx('login-form')}>
       <div className={cx('login-label')}>PHONE</div>
@@ -74,7 +76,7 @@ const TRegisterForm: React.FC<any> = (props) => {
         Back To Login
       </div>
       <div className={cx('login-form-btn')} onClick={onRegister}>
-        REGISTER{verifyLoading && '...'}
+        REGISTER{verifyState.loading && '...'}
       </div>
       <div className={cx('for-test-scroll')}>FOR TEST SCROLL</div>
       <div className={cx('for-test-scroll')}>FOR TEST SCROLL</div>

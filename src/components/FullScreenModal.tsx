@@ -31,6 +31,7 @@ const TFullScreenModal: React.FC<any> = (props: any) => {
   )
 }
 export const FullScreenModal = enhancePopupComponent(TFullScreenModal)
+export default FullScreenModal
 
 const TMessageSModal: React.FC<any> = (props: any) => {
   const { isOpen, onClose } = props

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { usePageProps } from './PageRouter'
+import { usePageProps } from './PageRouterContext'
 
 export const PageError: React.FC<any> = (props) => {
   usePageProps({ visible: false })
@@ -9,3 +9,4 @@ export const PageError: React.FC<any> = (props) => {
     </section>
   )
 }
+export default PageError

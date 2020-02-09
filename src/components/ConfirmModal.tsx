@@ -33,3 +33,4 @@ export const TConfirmModal: React.FC<any> = (props) => {
   )
 }
 export const ConfirmModal = enhancePopupComponent(TConfirmModal)
+export default ConfirmModal

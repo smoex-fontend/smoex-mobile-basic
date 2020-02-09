@@ -1,11 +1,11 @@
 {
-  "name": "smoex-mobile-basic",
-  "version": "0.0.22",
+  "name": "smoex-common-mobile",
+  "version": "0.0.5",
   "description": "A simplify work flow for redux",
   "main": "build/index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "NODE_ENV=production webpack",
+    "build": " webpack",
     "build:prod": "npm run build && npm publish",
     "upload:prod": "smoex-scripts upload ./build",
     "format": "npm run format:tslint && npm run format:prettier",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lynnkoo/smoex-mobile-basic.git"
+    "url": "git+https://github.com/lynnkoo/smoex-common-mobile.git"
   },
   "keywords": [
     "redux-async-kit",
@@ -24,9 +24,9 @@
   "author": "lynnkoo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lynnkoo/smoex-mobile-basic/issues"
+    "url": "https://github.com/lynnkoo/smoex-common-mobile/issues"
   },
-  "homepage": "https://github.com/lynnkoo/smoex-mobile-basic#readme",
+  "homepage": "https://github.com/lynnkoo/smoex-common-mobile#readme",
   "dependencies": {
     "@types/react-redux": "^7.1.5",
     "react": "^16.11.0",
@@ -34,8 +34,8 @@
     "react-dom-basic-kit": "^0.0.26",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
-    "redux-async-kit": "^0.0.10",
-    "smoex-common-business": "^0.0.4"
+    "redux-async-kit": "^0.0.12",
+    "smoex-common-business": "^0.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -52,11 +52,13 @@
     "file-loader": "^5.0.2",
     "husky": "^3.0.7",
     "lint-staged": "^9.4.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
     "react-dev-utils": "^10.0.0",
     "react-docgen-typescript-loader": "^3.6.0",
     "sass-loader": "^8.0.0",
+    "smoex-scripts": "^1.0.2",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
     "tslint": "^5.11.0",
