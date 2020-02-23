@@ -7,8 +7,7 @@ import {
   useToastError,
   useModal,
 } from 'react-dom-basic-kit'
-import { useFormState } from 'react-dom-basic-kit'
-import { transformStyles } from 'react-dom-basic-kit'
+import { transformStyles, useFormContext } from 'react-dom-basic-kit'
 import { enhanceFormComponent } from 'react-dom-basic-kit'
 import { useAsyncCallback, useCurrentCallback } from 'redux-async-kit'
 import { accountAsyncAction, commonSlice } from 'smoex-common-business'
@@ -19,7 +18,7 @@ const cx = transformStyles(styles)
 
 const TRegisterForm: React.FC<any> = (props) => {
   const { toLogin, callback } = props
-  const [data] = useFormState()
+  const { data } = useFormContext()
 
   const toggleToast = useToggleToast()
 

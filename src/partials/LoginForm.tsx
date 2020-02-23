@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { FullScreenModal } from '../components/FullScreenModal'
 import styles from './styles/LoginModal.module.scss'
-import { useToastError } from 'react-dom-basic-kit'
-import { useFormState } from 'react-dom-basic-kit'
+import { useToastError, useFormContext } from 'react-dom-basic-kit'
 import { transformStyles } from 'react-dom-basic-kit'
 import { enhanceFormComponent } from 'react-dom-basic-kit'
 import { useAsyncCallback } from 'redux-async-kit'
@@ -13,7 +12,7 @@ const cx = transformStyles(styles)
 
 const TLoginForm: React.FC<any> = (props) => {
   const { toRegister, callback } = props
-  const [data, setData] = useFormState()
+  const { data, update } = useFormContext()
   const [loginType, setLoginType] = React.useState('password')
 
   const [login, loginState] = commonSlice.useAction(accountAsyncAction.login)
@@ -46,7 +45,9 @@ const TLoginForm: React.FC<any> = (props) => {
   useToastError(sendState.error)
 
   React.useEffect(() => {
-    setData({ password: '', code: '' })
+    if (loginType === 'code') {
+      update({ password: '' })
+    }
   }, [loginType])
 
   const onChangeType = () => {
