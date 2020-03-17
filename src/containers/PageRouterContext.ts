@@ -1,16 +1,4 @@
 import * as React from 'react'
-import { Switch, Route, useLocation } from 'react-router-dom'
-import { Header } from './Header'
-import { useAsyncCallback } from 'redux-async-kit'
-import { accountAsyncAction, commonSlice } from 'smoex-common-business'
-import { Footer } from './Footer'
-import { PageError } from './PageError'
-import { PageLoading } from './PageLoading'
-import { Install } from './Install'
-import { IS_QQ_WEBVIEW } from '../utils/device'
-import { Controller } from './Controller'
-import { IS_WECHAT_WEBVIEW } from '../utils/device'
-import { useToastError } from 'react-dom-basic-kit'
 
 export const PageContext = React.createContext<any>(null)
 

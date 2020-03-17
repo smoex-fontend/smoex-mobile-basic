@@ -8,9 +8,9 @@ import { PageError } from './PageError'
 import { PageLoading } from './PageLoading'
 import { Install } from './Install'
 import { Controller } from './Controller'
-import { IS_WECHAT_WEBVIEW } from '../utils/device'
-import { useToastError, IS_WINDOWS } from 'react-dom-basic-kit'
+import { useToastError } from 'react-dom-basic-kit'
 import { DEFALUT_PAGE_PROPS, PageContext } from './PageRouterContext'
+import { initInnerHeight, IS_WECHAT_WEBVIEW } from 'browser-basic-kit'
 
 function useInitLoading() {
   const [getInfo, infoState] = commonSlice.useAction(accountAsyncAction.getInfo)
@@ -31,15 +31,6 @@ function useInitLoading() {
     onGetInfo()
   }, [])
   return loading
-}
-
-function initInnerHeight(rootNode: any) {
-  // windows 如果不减去两个像素就会出现滚动条
-  const heightOffset = IS_WINDOWS ? -2 : 0
-  const innerHeight = window.innerHeight
-  rootNode.style.minHeight = innerHeight
-    ? innerHeight + heightOffset + 'px'
-    : '100vh'
 }
 
 export function useInitRootHeight() {

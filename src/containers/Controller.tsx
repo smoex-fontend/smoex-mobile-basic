@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IS_QQ_WEBVIEW } from '../utils/device'
+import { IS_QQ_WEBVIEW } from 'browser-basic-kit'
 import styles from './styles/App.module.scss'
 import { transformStyles } from 'react-dom-basic-kit'
 
